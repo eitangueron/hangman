@@ -4,11 +4,12 @@ import Letter from './Letter'
   class Soulution extends Component {
   
     render() {
-        let letters = ["_ ","_ ","_ ","_ "]
+        let word = this.props.solution.word.split('')
+        let hint = this.props.solution.hint
             return (<div>
-                    {letters.map(letter => <span>{letter}</span>)}
+                    {word.map(letter =><span key={letter + 'Word'}>{this.props.letterStatus[letter] ? letter : ' _ '}</span>)}
                     <div>
-                        <em>Hint Hint</em>
+                        <em>{hint}</em>
                     </div>
                 </div>)
     }

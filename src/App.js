@@ -5,15 +5,35 @@ import Letters from './components/Letters'
 import Score from './components/Score'
 
   class App extends Component {
-  
+    
+    constructor(){
+      super()
+      this.state = {
+        letterStatus:{},
+        solution:{
+          word:'EITAN',
+          hint:'He\'s super cool...'
+        },
+        score:100
+      }
+    }
+
+    generateLetterStatuses(){
+      for(let i=65; i<=90; i++){
+        let letter = String.fromCharCode(i)
+        this.state.letterStatus[letter] = false
+      }
+    }
+
     render() {
-    return (
-      <div>
-        <Score />
-        <Solution />
-        <Letters/>
-      </div>
-      )
+      this.generateLetterStatuses()
+      return (
+          <div>
+            <Score score={this.state.score}/>
+            <Solution letterStatus={this.state.letterStatus} solution={this.state.solution}/>
+            <Letters letterStatus={this.state.letterStatus}/>
+          </div>
+        )
     }
   }
 
