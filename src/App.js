@@ -16,6 +16,7 @@ import Score from './components/Score'
         },
         score:100
       }
+      this.generateLetterStatuses()
     }
 
     generateLetterStatuses(){
@@ -25,13 +26,35 @@ import Score from './components/Score'
       }
     }
 
+    decreaseScore = () => {
+      let oldScore = this.state.score
+      let decreaseAmount = 100/this.state.solution.word.length
+      if(this.state.score- decreaseAmount > 0){
+        this.setState({
+          score: oldScore-decreaseAmount
+        })
+      } else {
+        this.setState({
+          score: 0
+        })
+        alert('Game over u f loser!')
+      }
+    }
+
+    selectLetter = (letter) => {
+      let XletterStatus = {...this.state.letterStatus}
+      XletterStatus[letter] = true
+      this.setState({
+        letterStatus : XletterStatus
+      })
+    }
+
     render() {
-      this.generateLetterStatuses()
       return (
           <div>
             <Score score={this.state.score}/>
             <Solution letterStatus={this.state.letterStatus} solution={this.state.solution}/>
-            <Letters letterStatus={this.state.letterStatus}/>
+            <Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} decreaseScore={this.decreaseScore} word={this.state.solution.word}/>
           </div>
         )
     }
