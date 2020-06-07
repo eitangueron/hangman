@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
   class Letter extends Component {
 
-    selectLetter = () => {
+    selectLetter = async () => {
       let letter = this.props.letter
       {if (!this.props.word.includes(letter)){this.props.decreaseScore()}}
-      this.props.selectLetter(letter)
+      await this.props.selectLetter(letter)
+      this.props.endGame()
     }
 
     render() {

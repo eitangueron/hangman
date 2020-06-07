@@ -26,6 +26,15 @@ import Score from './components/Score'
       }
     }
 
+    endGame = () => {
+      for(let letter of this.state.solution.word){
+        if(!this.state.letterStatus[letter]){
+          return false 
+        }  
+      }
+      alert(`Congrats!`)
+    }
+
     decreaseScore = () => {
       let oldScore = this.state.score
       let decreaseAmount = 100/this.state.solution.word.length
@@ -37,7 +46,7 @@ import Score from './components/Score'
         this.setState({
           score: 0
         })
-        alert('Game over u f loser!')
+        alert(`Game over u f loser! Secret word was: ${this.state.solution.word}`)
       }
     }
 
@@ -54,7 +63,7 @@ import Score from './components/Score'
           <div>
             <Score score={this.state.score}/>
             <Solution letterStatus={this.state.letterStatus} solution={this.state.solution}/>
-            <Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} decreaseScore={this.decreaseScore} word={this.state.solution.word}/>
+            <Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} decreaseScore={this.decreaseScore} word={this.state.solution.word} endGame={this.endGame}/>
           </div>
         )
     }

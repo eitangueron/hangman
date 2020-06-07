@@ -40,3 +40,15 @@
 .selected{
   text-decoration: line-through;
 }
+
+.low-score{
+  color: red
+}
+
+.medium-score{
+  color: green
+}
+
+.high-score{
+  color: #61dafb;
+}

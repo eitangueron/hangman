@@ -4,7 +4,8 @@ import React, { Component } from 'react';
   class Score extends Component {
   
     render() {
-      return <div>{this.props.score}</div>
+      let score = this.props.score
+      return (<div className= {score>=80 ? 'high-score' : score<80 && score>=50 ? 'medium-score ' : 'low-score' }>{this.props.score}</div>)
     }
     
   }
